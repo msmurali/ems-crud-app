@@ -5,4 +5,5 @@ interface employee {
   branch: string;
   photoURL: string;
   status: string;
+  role: string;
 }
