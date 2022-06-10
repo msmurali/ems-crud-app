@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
     HeaderComponent,
     EmployeeComponent,
     EmployeeListComponent,
+    FormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
