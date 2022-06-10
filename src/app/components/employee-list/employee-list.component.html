@@ -1,0 +1,39 @@
+<div class="employee-list">
+    <form class="search-form" novalidate>
+        <div class="filter-group">
+            <button class="btn filter-btn" type="button">
+                <span>&#9881;</span>
+            </button>
+            <div class="options-modal">
+                <div class="option-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status">
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">In active</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label for="role">Role</label>
+                    <select name="role" id="role">
+                        <option value="JUNIOR">Junior</option>
+                        <option value="SENIOR">Senior</option>
+                        <option value="MANAGER">Manager</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label for="sort">Sort by</label>
+                    <select name="sort" id="sort">
+                        <option value="NAME">Name</option>
+                        <option value="BRANCH">Branch</option>
+                        <option value="SALARY">Salary</option>
+                        <option value="JOINED_DATE">Joined Date</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="search" name="emp-search" id="emp-search" class="search-field">
+        <button class="btn search-btn" type="button">
+            <span>&#10148;</span>
+        </button>
+    </form>
+</div>
