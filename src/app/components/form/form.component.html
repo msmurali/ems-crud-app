@@ -10,38 +10,63 @@
         </div>
         <div class="form-group">
             <label for="age">Age:</label>
-            <input type="number" name="age" id="age" formControlName="age">
+            <input type="number" name="age" id="age" formControlName="age" [class.error]="age.touched && age.invalid">
+            <div class="errors" *ngIf="age.touched && age.invalid">
+                <span *ngIf="age.errors.required" class="err-msg">Age is required</span>
+            </div>
         </div>
         <div class="form-group">
-            <label for="photoURL">PhotoURL:</label>
-            <input type="text" name="photoURL" id="photo-url" formControlName="photoURL">
+            <label for="photo-url">PhotoURL:</label>
+            <input type="text" name="photo-url" id="photo-url" formControlName="photoURL"
+                [class.error]="photoURL.touched && photoURL.invalid">
+            <div class="errors" *ngIf="photoURL.touched && photoURL.invalid">
+                <span *ngIf="photoURL.errors.required" class="err-msg">PhotoURL is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="branch">Branch:</label>
-            <input type="branch" name="branch" id="branch" formControlName="branch">
+            <input type="branch" name="branch" id="branch" formControlName="branch"
+                [class.error]="branch.touched && branch.invalid">
+            <div class="errors" *ngIf="branch.touched && branch.invalid">
+                <span *ngIf="branch.errors.required" class="err-msg">Branch is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="joined-date">Joined Date:</label>
-            <input type="date" name="joined-date" id="joined-date" formControlName="joinedDate">
+            <input type="date" name="joined-date" id="joined-date" formControlName="joinedDate"
+                [class.error]="joinedDate.touched && joinedDate.invalid">
+            <div class="errors" *ngIf="joinedDate.touched && joinedDate.invalid">
+                <span *ngIf="joinedDate.errors.required" class="err-msg">Joined Date is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="salary">Salary:</label>
-            <input type="number" name="salary" id="salary" formControlName="salary">
+            <input type="number" name="salary" id="salary" formControlName="salary"
+                [class.error]="salary.touched && salary.invalid">
+            <div class="errors" *ngIf="salary.touched && salary.invalid">
+                <span *ngIf="salary.errors.required" class="err-msg">Salary is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="role">Role:</label>
-            <select name="role" id="role" formControlName="role">
+            <select name="role" id="role" formControlName="role" [class.error]="role.touched && role.invalid">
                 <option value="JUNIOR">Junior</option>
                 <option value="SENIOR">Senior</option>
                 <option value="MANAGER">Manager</option>
             </select>
+            <div class="errors" *ngIf="role.touched && role.invalid">
+                <span *ngIf="role.errors.required" class="err-msg">Role is required</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="status">Status:</label>
-            <select name="status" id="status" formControlName="status">
+            <select name="status" id="status" formControlName="status" [class.error]="status.touched && status.invalid">
                 <option value="ACTIVE">Active</option>
                 <option value="INACTIVE">Inactive</option>
             </select>
+            <div class="errors" *ngIf="status.touched && status.invalid">
+                <span *ngIf="status.errors.required" class="err-msg">Status is required</span>
+            </div>
         </div>
         <button class="btn" type="button" (click)="log()">Create</button>
     </form>
