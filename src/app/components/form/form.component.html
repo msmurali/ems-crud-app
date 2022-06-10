@@ -1,18 +1,22 @@
 <div class="employee-form">
-    <form [formGroup]="form">
+    <form [formGroup]="form" novalidate>
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" formControlName="name"
                 [class.error]="name.touched && name.invalid">
             <div class="errors" *ngIf="name.touched && name.invalid">
-                <span *ngIf="name.errors.required" class="err-msg">Name is required</span>
+                <span *ngIf="name.errors?.required" class="err-msg">Name is required</span>
+                <span *ngIf="name.errors?.minlength" class="err-msg">Name must have
+                    {{name.errors?.minlength.requiredLength}} or more characters</span>
             </div>
         </div>
         <div class="form-group">
             <label for="age">Age:</label>
             <input type="number" name="age" id="age" formControlName="age" [class.error]="age.touched && age.invalid">
             <div class="errors" *ngIf="age.touched && age.invalid">
-                <span *ngIf="age.errors.required" class="err-msg">Age is required</span>
+                <span *ngIf="age.errors?.required" class="err-msg">Age is required</span>
+                <span *ngIf="age.errors?.min" class="err-msg">Age must be greater than 20</span>
+                <span *ngIf="age.errors?.max" class="err-msg">Age must be lesser than 60</span>
             </div>
         </div>
         <div class="form-group">
@@ -20,7 +24,8 @@
             <input type="text" name="photo-url" id="photo-url" formControlName="photoURL"
                 [class.error]="photoURL.touched && photoURL.invalid">
             <div class="errors" *ngIf="photoURL.touched && photoURL.invalid">
-                <span *ngIf="photoURL.errors.required" class="err-msg">PhotoURL is required</span>
+                <span *ngIf="photoURL.errors?.required" class="err-msg">PhotoURL is required</span>
+                <span *ngIf="photoURL.errors?.pattern" class="err-msg">Not a valid photo URL</span>
             </div>
         </div>
         <div class="form-group">
@@ -28,7 +33,9 @@
             <input type="branch" name="branch" id="branch" formControlName="branch"
                 [class.error]="branch.touched && branch.invalid">
             <div class="errors" *ngIf="branch.touched && branch.invalid">
-                <span *ngIf="branch.errors.required" class="err-msg">Branch is required</span>
+                <span *ngIf="branch.errors?.required" class="err-msg">Branch is required</span>
+                <span *ngIf="branch.errors?.minlength" class="err-msg">Branch must have
+                    {{branch.errors?.minlength.requiredLength}} or more characters</span>
             </div>
         </div>
         <div class="form-group">
@@ -36,7 +43,7 @@
             <input type="date" name="joined-date" id="joined-date" formControlName="joinedDate"
                 [class.error]="joinedDate.touched && joinedDate.invalid">
             <div class="errors" *ngIf="joinedDate.touched && joinedDate.invalid">
-                <span *ngIf="joinedDate.errors.required" class="err-msg">Joined Date is required</span>
+                <span *ngIf="joinedDate.errors?.required" class="err-msg">Joined Date is required</span>
             </div>
         </div>
         <div class="form-group">
@@ -44,7 +51,7 @@
             <input type="number" name="salary" id="salary" formControlName="salary"
                 [class.error]="salary.touched && salary.invalid">
             <div class="errors" *ngIf="salary.touched && salary.invalid">
-                <span *ngIf="salary.errors.required" class="err-msg">Salary is required</span>
+                <span *ngIf="salary.errors?.required" class="err-msg">Salary is required</span>
             </div>
         </div>
         <div class="form-group">
@@ -55,7 +62,7 @@
                 <option value="MANAGER">Manager</option>
             </select>
             <div class="errors" *ngIf="role.touched && role.invalid">
-                <span *ngIf="role.errors.required" class="err-msg">Role is required</span>
+                <span *ngIf="role.errors?.required" class="err-msg">Role is required</span>
             </div>
         </div>
         <div class="form-group">
@@ -65,7 +72,7 @@
                 <option value="INACTIVE">Inactive</option>
             </select>
             <div class="errors" *ngIf="status.touched && status.invalid">
-                <span *ngIf="status.errors.required" class="err-msg">Status is required</span>
+                <span *ngIf="status.errors?.required" class="err-msg">Status is required</span>
             </div>
         </div>
         <button class="btn" type="button" (click)="log()">Create</button>

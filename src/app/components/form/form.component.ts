@@ -13,11 +13,19 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: ['', Validators.required, Validators.minLength(3)],
-      age: ['', Validators.required],
-      branch: ['', Validators.required, Validators.minLength(3)],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      age: ['', [Validators.required, Validators.min(20), Validators.max(60)]],
+      branch: ['', [Validators.required, Validators.minLength(3)]],
       salary: ['', Validators.required],
-      photoURL: ['', Validators.required],
+      photoURL: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            new RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')
+          ),
+        ],
+      ],
       role: ['', Validators.required],
       status: ['', Validators.required],
       joinedDate: ['', Validators.required],
