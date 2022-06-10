@@ -1,3 +1,24 @@
 .employee-form {
   padding: 1em 1.2em;
+
+  form {
+    .form-group {
+      margin: 1.4em 0;
+
+      label {
+        display: block;
+        font-family: "Poppins";
+        margin-bottom: 0.2em;
+      }
+
+      input,
+      select {
+        width: 100%;
+      }
+    }
+
+    .btn {
+      background-color: #1aaa1a;
+    }
+  }
 }

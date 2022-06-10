@@ -5,6 +5,10 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
 
+    .search-field {
+      margin: 0 1em;
+    }
+
     .filter-group {
       position: relative;
 
@@ -34,14 +38,6 @@
           }
         }
       }
-    }
-
-    .search-field {
-      padding: 0.4em 1em;
-      border-radius: 4px;
-      border: 0.2px solid #d8d8d8;
-      margin: 0 1em;
-      font-family: "Poppins";
     }
 
     .btn {
