@@ -17,8 +17,14 @@
       }
     }
 
-    .btn {
-      background-color: #1aaa1a;
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn {
+        background-color: #1aaa1a;
+        margin: 2em auto;
+      }
     }
   }
 }

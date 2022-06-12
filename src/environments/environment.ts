@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyAMyX45jbgCNCPdfJzhSX8FSdwG7_PXbLc',
+    authDomain: 'ms-ems-app.firebaseapp.com',
+    databaseURL: 'https://ms-ems-app.asia-south1.firebaseio.com',
+    projectId: 'ms-ems-app',
+    storageBucket: 'ms-ems-app.appspot.com',
+    messagingSenderId: '205859101426',
+    appId: '1:205859101426:web:b50902ece41d544bf78e6b',
+  },
 };
 
 /*
