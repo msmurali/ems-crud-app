@@ -10,17 +10,24 @@ import { EmployeeService } from './services/employee.service';
 export class AppComponent implements OnInit {
   constructor(private empService: EmployeeService) {}
 
-  employees: Employee[];
+  employees: Employee[] = [];
 
   ngOnInit(): void {
+    this.loadEmployees();
+    console.log(this.employees);
+  }
+
+  loadEmployees() {
     this.empService.getEmployees().subscribe({
-      next: (data) =>
-        data.map((e) => {
-          console.log({
-            id: e.payload.doc.id,
-            ...(e.payload.doc.data() as Employee),
-          });
-        }),
+      next: (data) => {
+        for (let i = 0; i < data.length; i++) {
+          let elem = data[i];
+          this.employees.push({
+            id: elem.payload.doc.id,
+            ...(elem.payload.doc.data() as Employee),
+          } as Employee);
+        }
+      },
       error: (err) => console.log(err),
     });
   }

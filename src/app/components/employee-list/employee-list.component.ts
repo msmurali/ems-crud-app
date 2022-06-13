@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 
 @Component({
@@ -6,6 +6,10 @@ import { Employee } from 'src/app/models/employee.model';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss'],
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
   @Input() employees: Employee[];
+
+  ngOnInit(): void {
+    console.log(this.employees);
+  }
 }
