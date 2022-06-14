@@ -36,7 +36,7 @@
             <span>&#10148;</span>
         </button>
     </form>
-    <div class="list">
+    <div class="list" *ngIf="employees">
         <app-employee *ngFor="let emp of employees" [employee]="emp"></app-employee>
     </div>
 </div>

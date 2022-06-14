@@ -6,10 +6,6 @@ import { Employee } from 'src/app/models/employee.model';
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss'],
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent {
   @Input() employees: Employee[];
-
-  ngOnInit(): void {
-    console.log(this.employees);
-  }
 }

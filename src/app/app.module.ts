@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { FormComponent } from './components/form/form.component';
+import { HomeComponent } from './components/home/home.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -22,6 +23,7 @@ import { environment } from '../environments/environment';
     EmployeeComponent,
     EmployeeListComponent,
     FormComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
