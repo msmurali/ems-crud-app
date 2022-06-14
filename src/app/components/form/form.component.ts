@@ -17,17 +17,40 @@ export class FormComponent implements OnInit {
   ) {}
 
   form: FormGroup;
-  action: String;
-  id: String | undefined;
+  action: string;
+  id: string | undefined;
 
   ngOnInit(): void {
+    this.route.url.subscribe((url) => (this.action = url[0].path));
+    this.route.paramMap.subscribe((params) => (this.id = params.get('id')));
+    this.loadForm();
+  }
+
+  loadForm() {
+    let employee: Employee | undefined;
+
+    if (this.id) {
+      this.empService
+        .getEmployee(this.id)
+        .subscribe((data) => (employee = data as Employee));
+    }
+
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      age: ['', [Validators.required, Validators.min(20), Validators.max(60)]],
-      branch: ['', [Validators.required, Validators.minLength(3)]],
-      salary: ['', Validators.required],
+      name: [
+        employee.name || '',
+        [Validators.required, Validators.minLength(3)],
+      ],
+      age: [
+        employee.age || '',
+        [Validators.required, Validators.min(20), Validators.max(60)],
+      ],
+      branch: [
+        employee.branch || '',
+        [Validators.required, Validators.minLength(3)],
+      ],
+      salary: [employee.salary || '', Validators.required],
       photoURL: [
-        '',
+        employee.photoURL || '',
         [
           Validators.required,
           Validators.pattern(
@@ -35,14 +58,10 @@ export class FormComponent implements OnInit {
           ),
         ],
       ],
-      role: ['', Validators.required],
-      status: ['', Validators.required],
-      joinedDate: ['', Validators.required],
+      role: [employee.role || '', Validators.required],
+      status: [employee.status || '', Validators.required],
+      joinedDate: [employee.joinedDate || '', Validators.required],
     });
-
-    this.route.url.subscribe((url) => (this.action = url[0].path));
-
-    this.route.paramMap.subscribe((params) => (this.id = params.get('id')));
   }
 
   get name() {
@@ -74,6 +93,15 @@ export class FormComponent implements OnInit {
     if (this.form.valid) {
       this.empService
         .addEmployee(this.form.value as Employee)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    }
+  }
+
+  update() {
+    if (this.form.valid) {
+      this.empService
+        .updateEmployee(this.form.value as Employee)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }

@@ -76,8 +76,8 @@
             </div>
         </div>
         <div class="btn-container">
-            <button class="btn" type="button" (click)="create()" [disabled]="form.invalid"
-                [class.disabled]="form.invalid">
+            <button class="btn" type="button" (click)="action === 'create' ? create() : update()"
+                [disabled]="form.invalid" [class.disabled]="form.invalid">
                 <span>{{ action || "Create" | titlecase}}</span>
             </button>
         </div>
