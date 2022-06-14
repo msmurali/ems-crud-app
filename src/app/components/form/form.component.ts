@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/models/employee.model';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-form',
@@ -8,10 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private empService: EmployeeService
+  ) {}
 
   form: FormGroup;
   action: String;
+  id: String | undefined;
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -33,7 +40,9 @@ export class FormComponent implements OnInit {
       joinedDate: ['', Validators.required],
     });
 
-    this.action = this.router.url.split('/')[1];
+    this.route.url.subscribe((url) => (this.action = url[0].path));
+
+    this.route.paramMap.subscribe((params) => (this.id = params.get('id')));
   }
 
   get name() {
@@ -61,7 +70,12 @@ export class FormComponent implements OnInit {
     return this.form.get('joinedDate');
   }
 
-  log() {
-    console.log(this.form);
+  create() {
+    if (this.form.valid) {
+      this.empService
+        .addEmployee(this.form.value as Employee)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    }
   }
 }

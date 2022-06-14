@@ -24,13 +24,8 @@ export class EmployeeService {
       this.firestore
         .collection('emp-collection')
         .add(employee)
-        .then(
-          (response) => {
-            console.log(response);
-            resolve(response);
-          },
-          (error) => reject(error)
-        );
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
     });
   }
 

@@ -2,7 +2,7 @@ export interface Employee {
   id: string;
   name: string;
   age: number;
-  joinedDate: Date;
+  joinedDate: string;
   branch: string;
   salary: number;
   photoURL: string;

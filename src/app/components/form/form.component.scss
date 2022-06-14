@@ -25,6 +25,11 @@
         background-color: #1aaa1a;
         margin: 2em auto;
       }
+      .disabled {
+        background-color: #5ba15b;
+        box-shadow: none;
+        cursor: auto;
+      }
     }
   }
 }
