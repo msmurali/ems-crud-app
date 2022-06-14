@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   form: FormGroup;
+  action: String;
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -30,6 +32,8 @@ export class FormComponent implements OnInit {
       status: ['', Validators.required],
       joinedDate: ['', Validators.required],
     });
+
+    this.action = this.router.url.split('/')[1];
   }
 
   get name() {

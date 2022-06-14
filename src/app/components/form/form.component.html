@@ -76,7 +76,9 @@
             </div>
         </div>
         <div class="btn-container">
-            <button class="btn" type="button" (click)="log()">Create</button>
+            <button class="btn" type="button" (click)="log()">
+                <span>{{ action | titlecase}}</span>
+            </button>
         </div>
     </form>
 </div>

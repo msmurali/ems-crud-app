@@ -1,6 +1,6 @@
 <div class="home">
     <div>
-        <button type="button" class="btn create-btn">Create &#10009;</button>
+        <button type="button" (click)="navigateTo()" class="btn create-btn">Create &#10009;</button>
     </div>
     <app-employee-list *ngIf="employees" [employees]="employees"></app-employee-list>
     <app-form></app-form>
