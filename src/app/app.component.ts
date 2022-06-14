@@ -19,10 +19,9 @@ export class AppComponent implements OnInit {
   }
 
   loadEmployees() {
-    let employees: Employee[] = [];
-
     this.empService.getEmployees().subscribe({
       next: (data) => {
+        let employees: Employee[] = [];
         for (let i = 0; i < data.length; i++) {
           let elem = data[i];
           employees.push({

@@ -29,11 +29,8 @@ export class EmployeeService {
     });
   }
 
-  updateEmployee(employee: Employee) {
-    return this.firestore
-      .collection('emp-collection')
-      .doc(employee.id)
-      .update(employee);
+  updateEmployee(id: string, employee: Employee) {
+    return this.firestore.collection('emp-collection').doc(id).update(employee);
   }
 
   removeEmployee(employee: Employee) {

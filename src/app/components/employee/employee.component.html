@@ -4,10 +4,10 @@
     </div>
     <h5 class="name">{{employee.name}}</h5>
     <div class="btn-container">
-        <button class="btn edit-btn">
+        <button class="btn edit-btn" (click)="navigateTo()">
             &#9998;
         </button>
-        <button class="btn delete-btn">
+        <button class="btn delete-btn" (click)="removeEmployee()">
             &#10150;
         </button>
     </div>

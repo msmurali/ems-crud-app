@@ -22,35 +22,20 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.url.subscribe((url) => (this.action = url[0].path));
-    this.route.paramMap.subscribe((params) => (this.id = params.get('id')));
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+    });
     this.loadForm();
   }
 
   loadForm() {
-    let employee: Employee | undefined;
-
-    if (this.id) {
-      this.empService
-        .getEmployee(this.id)
-        .subscribe((data) => (employee = data as Employee));
-    }
-
     this.form = this.fb.group({
-      name: [
-        employee.name || '',
-        [Validators.required, Validators.minLength(3)],
-      ],
-      age: [
-        employee.age || '',
-        [Validators.required, Validators.min(20), Validators.max(60)],
-      ],
-      branch: [
-        employee.branch || '',
-        [Validators.required, Validators.minLength(3)],
-      ],
-      salary: [employee.salary || '', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      age: ['', [Validators.required, Validators.min(20), Validators.max(60)]],
+      branch: ['', [Validators.required, Validators.minLength(3)]],
+      salary: ['', Validators.required],
       photoURL: [
-        employee.photoURL || '',
+        '',
         [
           Validators.required,
           Validators.pattern(
@@ -58,10 +43,18 @@ export class FormComponent implements OnInit {
           ),
         ],
       ],
-      role: [employee.role || '', Validators.required],
-      status: [employee.status || '', Validators.required],
-      joinedDate: [employee.joinedDate || '', Validators.required],
+      role: ['', Validators.required],
+      status: ['', Validators.required],
+      joinedDate: ['', Validators.required],
     });
+
+    if (this.id) {
+      this.empService.getEmployee(this.id).subscribe((data) => {
+        Object.keys(data).map((key) => {
+          this.form.get(key).setValue(data[key]);
+        });
+      });
+    }
   }
 
   get name() {
@@ -94,14 +87,16 @@ export class FormComponent implements OnInit {
       this.empService
         .addEmployee(this.form.value as Employee)
         .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
   }
 
   update() {
     if (this.form.valid) {
       this.empService
-        .updateEmployee(this.form.value as Employee)
+        .updateEmployee(this.id, {
+          ...this.form.value,
+        } as Employee)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
